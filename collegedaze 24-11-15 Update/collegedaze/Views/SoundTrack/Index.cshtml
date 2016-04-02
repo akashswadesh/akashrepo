@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="page_title two">
+    <div class="container">
+
+        <h1>Soundtrack</h1>
+
+    </div>
+</div><!-- end page title -->
+<div class="clearfix"></div>
+<div class="content_fullwidth">
+    <div class="container">
+     
+        <div class="">
+            <div class="container1">
+
+                <div class="row" data-anim-type="">
+                    @foreach (collegedaze.Models.Property i in ViewBag.contentlist)
+                    {
+                        <div class="col-md-12">
+                             <h4 class="red2">@i.Title</h4>
+                            </div>
+                        <div class="col-md-12">
+                      
+                            <p>@Html.Raw(HttpUtility.HtmlDecode(i.Description))</p>
+
+                        </div>
+
+                    }
+                  
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>  
+
+
+<div class="feature_section29 feature_soundtrack">
+    <div class="container">
+
+        <div class="ms-staff-carousel ms-round">
+            <!-- masterslider -->
+            <div class="master-slider" id="masterslider5">
+
+                @foreach (collegedaze.Models.Property i in ViewBag.vediocontentlist)
+                {
+                    <div class="ms-slide myvideo">
+                        <iframe src="@i.URLTitle" frameborder allowfullscreen></iframe>
+                        <div class="ms-info soundtrack_title">
+                            <h4 class="red">@i.Title</h4>
+                            <p>@Html.Raw(HttpUtility.HtmlDecode(i.Description))</p>
+                        </div>
+                    </div>
+
+                }
+
+
+
+            </div>
+            <!-- end of masterslider -->
+            <div class="ms-staff-info" id="staff-info"> </div>
+        </div>
+    </div>
+</div>

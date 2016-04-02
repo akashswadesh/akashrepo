@@ -1,0 +1,155 @@
+﻿
+@model collegedaze.Models.Property
+@using collegedaze.HtmlHelpers;
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+
+
+<style>
+
+</style>
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    Add Content
+                </div>
+
+                <div class="panel-body pan">
+
+                    @using (Html.BeginForm("Add", "Content", FormMethod.Post, new { @class = "register", enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-body pal">
+                            <div class="col-md-12 form-20">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Menu :</label>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Menu, ViewBag.MenuList as SelectList, new { @class = "form-control" })
+                                        <p id="smsg" style="color:red;"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Title:</label>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Title, new { @placeholder = "Title", @autocomplete = "off", @class = "form-control", @Maxlength = "100" })
+                                        <p style="color:red;"> *Max length 100 letters including white-space</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12" id="URL" style="display:none;">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">YouTube Embed URL:</label>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.URLTitle, new { @placeholder = "URL:Like-> https://www.youtube.com/embed/LGD9i718kBU?list=PLWwDcuC8sDRH6riFycMtU3A7nc4rqz3L2", @autocomplete = "off", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-20">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Description:</label>
+                                    <div class="col-lg-9">
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @type = "text", @placeholder = "Description", @id = "summernote-default" })
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12" id="imghide">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Image:</label>
+                                </div>
+                                <div class="col-lg-8">
+                                    <input type="file" value="image" name="file" />
+                                    <p id="slider" style="color:red; display:none;"></p>
+                                </div>
+                            </div>
+                                <div class="col-md-12 form-20">
+                                    <div class="form-group">
+
+                                        <label class="col-lg-3 control-label">Status :</label>
+                                        <div class="col-lg-8">
+                                            @Html.DropDownListFor(model => model.Status,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                    new SelectListItem { Text="DEACTIVE", Value="DEACTIVE"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-12 form-20 ">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label"></label>
+                                        <div class="col-lg-7">
+                                            <button type="submit" class="btn btn-green">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                           
+
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script type='text/javascript' src='~/wp-content/themes/Avada/js/main.min.js'></script>
+<script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+@section scripts{
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+    <script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+    <script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+    <script src="~/admin_assets/js/ui-editors.js"></script>
+
+    <script>
+        $("#Menu").change(function () {
+            var m = $("#Menu").val();
+
+            if (m == "8") {
+
+                $("#smsg").html("Enter the title for vedio");
+                $("#URL").show();
+                $("#imghide").hide();
+            }
+            else if (m == "11") {
+                $("#smsg").html("For Better Logo Experience Use Resolution Min 200 X 111");
+            }
+            else if (m == "10") {
+                $("#smsg").html("For Better Ads Experience Use Resolution Min 555 X 200");
+                $("#AdURL").show();
+            }
+            else if(m=="9")
+            {
+                $("#slider").html("For Better Photo Experience Use Resolution Min 500 X 500");
+            }
+        });
+    </script>
+
+
+}

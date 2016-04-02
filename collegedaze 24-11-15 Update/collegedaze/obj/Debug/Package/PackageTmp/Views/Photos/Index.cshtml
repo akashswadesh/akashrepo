@@ -1,0 +1,62 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="page_title two">
+    <div class="container">
+
+        <h1>Photos</h1>
+
+    </div>
+</div><!-- end page title -->
+<div class="clearfix"></div>
+<div class="content_fullwidth">
+    <div class="container">
+       
+        <div class="features_sec20">
+            <div class="container">
+
+
+                <div id="grid-container" class="cbp-l-grid-projects four">
+
+                    <ul>
+                @foreach (collegedaze.Models.Property a2 in ViewBag.PhotoList)
+                                            {
+                        <li class="cbp-item graphic">
+                            <div class="cbp-caption">
+                                <div class="cbp-caption-defaultWrap">
+                                    <img src="@a2.ThumbImgURL" alt="" />
+                                </div>
+                                <div class="cbp-caption-activeWrap">
+                                    <div class="cbp-l-caption-alignCenter">
+                                        <div class="cbp-l-caption-body">
+                                           
+                                            <a href="@a2.ImgURL" class="cbp-lightbox cbp-l-caption-buttonRight" data-title="">View Larger</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="threeborder">
+                            <div class="cbp-l-grid-projects-title">@a2.Title</div>
+                            <div class="cbp-l-grid-projects-desc">@a2.Description</div></div>
+                        </li>
+            }
+                     
+
+                    </ul>
+                </div>
+                <div class="cbp-l-loadMore-text">
+                    <div data-href="#" class="cbp-l-loadMore-text-link"></div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>   <!-- end content area -->
+<div class="clearfix margin_top5"></div>

@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Admin Home";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    TempData["Dashboard1"] = "class=" + "active";
+    TempData["PageTitle"] = "Dashboard";
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<!--BEGIN CONTENT-->
+<div class="page-content">
+    <div id="tab-general">
+      
+        <div id="sum_box" class="row mbl">
+
+            <div class="col-sm-6 col-md-3">
+                <div class="panel visit db mbm">
+                    <div class="panel-body">
+                        <p class="icon"><i class="icon fa fa-group"></i></p>
+                        <h4 class="value"><span>100</span></h4>
+                        <p class="description">Visitors</p>
+                        <div class="progress progress-sm mbn">
+                            <div role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;" class="progress-bar progress-bar-warning">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          <div class="col-sm-6 col-md-3">
+              <div class="panel task db mbm">
+                  <div class="panel-body">
+                      <p class="icon">
+                          <i class="icon fa fa-user" style="color:#d9534f;"></i></p>
+                      <h4 class="value"><span>155</span></h4>
+                      <p class="description">Happy Customer</p>
+                      <div class="progress progress-sm mbn">
+                          <div class="progress-bar progress-bar-danger" style="width: 50%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" role="progressbar">
+                              <span class="sr-only">50% Complete (success)</span>
+
+                          </div>
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+          </div>
+            <div class="col-sm-6 col-md-3">
+                <div class="panel income db mbm">
+                    <div class="panel-body"><p class="icon"><i class="icon fa fa-signal" style="color:#5bc0de;"></i></p>
+                        <h4 class="value"><span>50</span><span></span></h4><p class="description">Get A Quote</p>
+                        <div class="progress progress-sm mbn"><div class="progress-bar progress-bar-info" style="width: 60%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar">
+                            <span class="sr-only">60% Complete (success)</span></div></div></div></div></div>
+            <div class="col-sm-6 col-md-3">
+                <div class="panel visit db mbm">
+                    <div class="panel-body">
+                        <p class="icon">
+                            <i class="icon fa fa-group"></i></p>
+                        <h4 class="value"><span>376</span></h4>
+                        <p class="description">Visitor description</p>
+                        <div class="progress progress-sm mbn">
+                            <div class="progress-bar progress-bar-warning" style="width: 70%;" aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar">
+                                <span class="sr-only">70% Complete (success)</span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+       
+                         
+                    
+
+    </div>
+</div>
+<!--END CONTENT-->
+
+@section scripts{
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.categories.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.pie.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.tooltip.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.resize.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.fillbetween.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.stack.js"></script>
+    <script src="/admin_assets/vendors/flot-chart/jquery.flot.spline.js"></script>
+    <script src="/admin_assets/vendors/calendar/zabuto_calendar.min.js"></script>
+    <script src="/admin_assets/vendors/sco.message/sco.message.js"></script>
+    <script src="/admin_assets/vendors/intro.js/intro.js"></script>
+    <script src="/admin_assets/js/index.js"></script>
+
+}

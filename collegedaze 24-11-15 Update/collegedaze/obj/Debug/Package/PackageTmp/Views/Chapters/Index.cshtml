@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="page_title two">
+    <div class="container">
+
+        <h1>Selected Chapters</h1>
+
+    </div>
+</div><!-- end page title -->
+<div class="clearfix"></div>
+<div class="content_fullwidth">
+    <div class="container">
+@foreach (collegedaze.Models.Property i in ViewBag.contentlist)
+                    {
+        <div class="one_fourth">
+            <div class="framed-box">
+                <div class="framed-box-wrap">
+                    <div class="pricing-title">
+                        <h4 class="nocaps">@i.Title</h4>
+                    </div>
+                    <div class="pricing-text-list">
+                   <br />
+                     
+                        <p><a href="/Chapters/Detail/@i.id/" class="but_pdf"><i class="fa fa-book"></i> Read More</a></p>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end section -->
+
+}
+    
+
+
+    </div>
+</div>   <!-- end content area -->
+<div class="clearfix margin_top5"></div>
+

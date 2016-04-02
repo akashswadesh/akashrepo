@@ -1,0 +1,43 @@
+﻿@model collegedaze.Models.Property
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="content_fullwidth lessmar">
+        <div class="row">
+            <div class="col-md-12 text-center mt20 mb20">
+                <h4 class="text-uppercase inner-bg-title">Subscribe to College Daze</h4>
+            </div>
+            <div class="clearfix"></div>
+             <div class="col-md-7 col-md-offset-3 mb20">
+                <p>
+                    Add Your Email Details To Subscribe To Updates On The Forthcoming Book And Get Advance Info Straight To Your inbox !
+                </p>
+                <br />
+                <p>Note:  This is a private list— Your Email Address will not be shared.</p>
+                <br />
+                <div class="clearfix"></div>
+                 <div class="col-md-12">
+                     <p class="red">@TempData["MSG"]</p>
+                 </div>
+                 <div class="clearfix mb20"></div>
+@using (Html.BeginForm("Index", "Newsletter", FormMethod.Post, new {@class = "form-inline row",@role="form"}))
+
+{
+                
+                    <div class="form-group col-md-8">
+                        @Html.TextBoxFor(model => model.EmailID, new {@id="email", @placeholder = "Enter Your Email Address", @autocomplete = "off", @type = "email", @required = "required", @class = "form-control" })
+                       
+                    </div>
+                    <button type="submit" class="btn btn-primary">SUBSCRIBE</button>
+}
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix mb10"></div>
+        </div>
+
+    </div>
+</div>

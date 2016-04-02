@@ -1,0 +1,222 @@
+﻿@model collegedaze.Models.Property
+@using collegedaze.HtmlHelpers;
+
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="alert alert-info alert-dismissable" id="error" style="display:none;">
+    <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+    <strong id="msg"></strong>
+</div>
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    Add Section
+                </div>
+
+                <div class="panel-body pan">
+
+                    @using (Html.BeginForm("Menu", "Settings", FormMethod.Post, new { @class = "register", enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-body pal">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Menu:</label>
+                                        <div class="col-lg-7">
+                                            @Html.TextBoxFor(model => model.Menu, new { @class = "form-control", @required = "required" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-20">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Position:</label>
+                                        <div class="col-lg-7">
+                                            @Html.TextBoxFor(model => model.Position, new { @class = "form-control", @type = "number", @required = "required" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label">Status:</label>
+                                        <div class="col-lg-7">
+                                            @Html.DropDownListFor(model => model.Status,
+                                            new List<SelectListItem>
+                                            {
+                                            new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                             new SelectListItem { Text="DEACTIVE", Value="DEACTIVE"}
+                                             }
+                                            , new { @class = "form-control" }
+                                                )
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-20 ">
+                                    <div class="form-group">
+                                        <label class="col-lg-3 control-label"></label>
+                                        <div class="col-lg-7">
+                                            <button type="submit" class="btn btn-green" id="IntBtn">Submit</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" id="EditBtn" style="display:none;">
+                                        <label class="col-lg-4"></label>
+                                        <div class="col-md-2">
+                                            <a href="#" class="btn btn-primary" onclick="EditRecords();">Edit</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-actions text-right pal">
+                                &nbsp;
+
+                            </div>
+
+
+                        </div>
+
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portlet box panel panel-grey">
+                <div class="panel-heading">
+                    Section List
+                </div>
+                <div class="portlet-body">
+                    <div class="row mbm">
+                        <div class="col-lg-12">
+                            <div class="table-responsive">
+                                <table id="table_id" class="table table-hover table-striped table-bordered tablesorter">
+                                    <thead>
+
+                                        <tr>
+                                            <th width="9%">Edit</th>
+                                            <th>Menu</th>
+                                            <th>Position</th>
+                                            <th>Status</th>
+                                            @* <th>Delete</th>*@
+
+
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        @foreach (collegedaze.Models.Property i in ViewBag.MenuList)
+                                        {
+                                            <tr>
+
+
+                                                <td>
+                                                    <a onclick="getDataOne(@i.id)" class="btn btn-warning btn-xs">
+                                                        <i class="fa fa-edit"></i>&nbsp;
+                                                        Edit
+                                                    </a>
+                                                </td>
+                                                <td>@i.Menu</td>
+                                                <td>@i.Position</td>
+                                                <td>@i.Status</td>
+                                                @* <td><a href="/Settings/Delete?id=@i.id&type=Menu" class="btn btn-primary btn-xs">Delete</a></td>*@
+                                            </tr>
+                                        }
+
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script src="/admin_assets/vendors/DataTables/media/js/jquery.dataTables.js"></script>
+    <script src="/admin_assets/vendors/DataTables/media/js/dataTables.bootstrap.js"></script>
+    <script src="/admin_assets/vendors/DataTables/extensions/TableTools/js/dataTables.tableTools.min.js"></script>
+    <script src="/admin_assets/js/table-datatables.js"></script>
+
+    <script>
+         var cid;
+         function getDataOne(id)
+         {
+             //alert(id);
+           $.get('/Settings/Menu_Edit/', { id: id }, function (data) {
+
+                $("#id").val(data.split('##')[0]);
+                $("#Menu").val(data.split('##')[1]);
+                $("#Position").val(data.split('##')[2]);
+                $("#Status").val(data.split('##')[3]);
+                $("#IntBtn").hide();
+                $("#EditBtn").show();
+            });
+            cid = id;
+
+        }
+        function EditRecords() {
+            var url = "/Settings/Menu_Update";
+            var Menu = $("#Menu").val();
+            var Pos = $("#Position").val();
+            var Status = $("#Status").val();
+            if (Menu == null || Menu == "") {
+                alert("Please Put Menu Title");
+            }
+            else{
+                $.get(url, { id: cid, menu: Menu,pos:Pos, Status: Status}, function (data) {
+                    if (data == "SAVE") {
+                        $("#error").show();
+                        $("#msg").html("Record Updated Successfully");
+                        setTimeout(function () {
+                            window.location.reload(true);
+                        }, 1000);
+                    }
+
+              else
+              {
+                  $("#error").show();
+                  $("#msg").html("Record Not Updated");
+
+              }
+             // location.reload();
+
+                });
+            }
+        }
+
+    </script>
+}

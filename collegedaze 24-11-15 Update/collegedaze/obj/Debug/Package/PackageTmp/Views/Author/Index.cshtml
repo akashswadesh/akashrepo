@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="clearfix"></div>
+<div class="page_title two">
+    <div class="container">
+
+        <h1>Meet The Author</h1>
+
+    </div>
+</div><!-- end page title -->
+<div class="clearfix"></div>
+<div class="content_fullwidth">
+    <div class="container">
+     <div class="">
+            <div class="container1">
+             <div class="row" data-anim-type="">
+                    @foreach (collegedaze.Models.Property i in ViewBag.contentlist)
+                    {
+                        <div class="col-md-12">
+                          <p>@Html.Raw(HttpUtility.HtmlDecode(i.Description))</p>
+                     </div>
+
+                    }
+
+
+                    </div><!-- end section -->
+
+            </div>
+        </div>
+
+
+       
+
+    </div>
+</div>   <!-- end content area -->
+<div class="clearfix margin_top5"></div>

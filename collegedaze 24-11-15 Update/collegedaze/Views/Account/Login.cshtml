@@ -1,0 +1,76 @@
+﻿@model collegedaze.Models.Property
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head><title>~ College Daze ~ Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="expires" content="">
+    <!--Loading bootstrap css-->
+    <link type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800">
+    <link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oswald:400,700,300">
+     <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/bootstrap/css/bootstrap.min.css">
+    <!--Loading style vendors-->
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/animate.css/animate.css">
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/iCheck/skins/all.css">
+    <!--Loading style-->
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/css/themes/style1/pink-blue.css" class="default-style">
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/css/themes/style1/pink-blue.css" id="theme-change" class="style-change color-change">
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/css/style-responsive.css">
+    <link rel="shortcut icon" href="images/favicon.html">
+</head>
+<body id="signin-page">
+    <div class="page-form">
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new {@class = "form" }))
+                         {
+           
+            <div class="header-content">
+                <h1>Admin Log In</h1>
+            </div>
+            <div class="body-content">
+                <h5 style="color:#e5062b">@TempData["MSG"]</h5>
+                <div class="form-group">
+                    <div class="input-icon right"><i class="fa fa-user"></i>
+                        @Html.TextBoxFor(model=>model.EmailID,new{@placeholder="Email",@class="form-control"})
+                       </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-icon right"><i class="fa fa-key"></i>
+                     @Html.PasswordFor(model=>model.Password,new{@placeholder="Password",@class="form-control"})    
+                    </div>
+                </div>
+                
+                <div class="form-group pull-left">
+                    <button type="submit" class="btn btn-success">
+                        Log In
+                   </button>
+                </div>
+                <div class="clearfix"></div>
+                
+              
+            </div>
+       
+        }
+    </div>
+
+
+
+    <script src="/admin_assets/js/jquery-1.10.2.min.js"></script>
+    <script src="/admin_assets/js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="/admin_assets/js/jquery-ui.js"></script>
+    <!--loading bootstrap js-->
+    <script src="/admin_assets/vendors/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/admin_assets/vendors/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
+    <script src="/admin_assets/js/html5shiv.js"></script>
+    <script src="/admin_assets/js/respond.min.js"></script>
+    <script src="/admin_assets/vendors/iCheck/icheck.min.js"></script>
+    <script src="/admin_assets/vendors/iCheck/custom.min.js"></script>
+    
+    
+</body>
+</html>

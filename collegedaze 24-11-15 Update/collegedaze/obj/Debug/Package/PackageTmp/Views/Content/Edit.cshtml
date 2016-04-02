@@ -1,0 +1,232 @@
+﻿@model collegedaze.Models.Property
+@using collegedaze.HtmlHelpers;
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+      var info = Model;
+}
+}
+
+@if (TempData["MSG"] != null)
+{
+    <div class="alert alert-info alert-dismissable">
+        <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+        <strong>@TempData["MSG"]</strong>
+    </div>
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    Edit Content
+                </div>
+
+                <div class="panel-body pan">
+
+                    @using (Html.BeginForm("Edit", "Content", FormMethod.Post, new { @class = "register", enctype = "multipart/form-data" }))
+                    {
+                        <div class="form-body pal">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Category :</label>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Menu, ViewBag.MenuList as SelectList, new { @class = "form-control" })
+                                        @Html.TextBoxFor(model => model.id, new { @placeholder = "id", @required = "required", @class = "form-control", @style = "display:none;" })
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group form-20">
+                                    <label class="col-lg-3 control-label">Title</label>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.Title, new { @placeholder = "Title", @class = "form-control", @Maxlength = "100" })
+                                        <p style="color:red;"> *Max length 100 letters including white-space</p>
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+
+                            @if (info.URLTitle == null || info.URLTitle =="")
+                            {
+                            }
+                            else
+                            {
+                               <div class="col-md-12"  >
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">YouTube Embed URL:</label>
+                                    <div class="col-lg-8">
+                                        @Html.TextBoxFor(model => model.URLTitle, new { @placeholder = "URL:Like->", @autocomplete = "off", @class = "form-control" })
+
+                                    </div>
+                                </div>
+                            </div> 
+                            }
+                            
+                            
+                            <div class="col-md-12 form-20">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Description:</label>
+                                    <div class="col-lg-9">
+
+
+                                        @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @type = "text", @placeholder = "Description", @id = "summernote-default" })
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12 form-20">
+                                <div class="form-group">
+
+                                    <label class="col-lg-3 control-label">Status :</label>
+                                    <div class="col-lg-8">
+                                        @Html.DropDownListFor(model => model.Status,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Text="ACTIVE", Value="ACTIVE"},
+                                    new SelectListItem { Text="DEACTIVE", Value="DEACTIVE"}
+                                }
+                                , new { @class = "form-control" }
+                                )
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 form-20 ">
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label"></label>
+                                    <div class="col-lg-1">
+                                        <button type="submit" class="btn btn-green">EDIT</button>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <a href="/Content/Delete?id=@info.id&type=Content" class="btn btn-green btn" style="background-color:#f55c59; border-color:#f55c59">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions text-right pal">
+                                &nbsp;
+
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+                @if (info.URLTitle == null || info.ThumbImgURL == "")
+        {
+        }
+
+        else
+                            {
+        <div class="col-lg-12">
+            <div class="panel panel-blue">
+                <div class="panel-heading">
+                    Edit Image
+                </div>
+
+                <div class="panel-body pan">
+
+                    <div class="form-body pal">
+
+                        @using (Html.BeginForm("Edit_Pic", "Content", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+                        {
+
+
+                            <div class="form-group">
+                                <div class="col-lg-4">
+                                    <img src="@info.ThumbImgURL" style="max-width:100px; height:auto;" />
+                                </div>
+                                <div class="col-lg-6">
+                                    <input type="file" name="file2" class="form-control" />
+                                    <div class="col-md-12 form-20 ">
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-green">EDIT</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                @Html.TextBoxFor(model => model.id, new { @placeholder = "id", @required = "required", @class = "form-control", @style = "display:none;" })
+                            </div>
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                }
+
+
+    </div>
+</div>
+
+<script src="/assets/js/jquery.min.js"></script>
+<script type='text/javascript' src='~/wp-content/themes/Avada/js/main.min.js'></script>
+<script src="~/admin_assets/js/jquery-1.10.2.min.js"></script>
+@section scripts{
+    <link type="text/css" rel="stylesheet" href="~/admin_assets/vendors/summernote/summernote.css">
+    <script src="~/admin_assets/vendors/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <script src="~/admin_assets/vendors/ckeditor/ckeditor.js"></script>
+    <script src="~/admin_assets/vendors/summernote/summernote.js"></script>
+    <script src="~/admin_assets/js/ui-editors.js"></script>
+
+    <script type="text/jscript">
+        $(function () {
+            $('#Menu').change(function () {
+                $.getJSON('/Content/SubMenuList/' + $('#Menu').val(), function (data) {
+                    var items = '';
+                    $.each(data, function (i, Menu) {
+
+                        items += "<option value='" + Menu.Value + "'>" + Menu.Text + "</option>";
+
+                    });
+
+                    if (items.length == 35) {
+                        $("#getshowPage").hide();
+
+                    }
+                    else {
+                        $("#getshowPage").show();
+                        $('#SubMenu').html(items);
+                    }
+
+                });
+            });
+        });
+
+        $(function () {
+            $('#SubMenu').change(function () {
+                $.getJSON('/Content/SubMenuLevel/' + $('#SubMenu').val(), function (data) {
+                    var items = '';
+                    $.each(data, function (i, Menu) {
+                        items += "<option value='" + Menu.Value + "'>" + Menu.Text + "</option>";
+                    });
+                    $('#SubMenuLevel2').html(items);
+                });
+            });
+        });
+
+        //$(document).ready(function () {
+
+        //    var m = $("#Menu option:selected").text();
+        //    //  alert(m);
+        //    if (m == "Ad") {
+        //        $("#AdURL").show();
+        //    }
+
+        //}
+        //);
+
+    </script>
+
+}

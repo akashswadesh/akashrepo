@@ -1,0 +1,45 @@
+﻿@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var info = Model;
+}
+
+<div class="clearfix"></div>
+<div class="page_title two">
+    <div class="container">
+
+        <h1>@Model.Title</h1>
+
+    </div>
+</div><!-- end page title -->
+                    <div class="clearfix"></div>
+                    <div class="content_fullwidth">
+                    <div class="container">
+                    <div class="row" data-anim-type="">
+                       @if(TempData["Found"]=="1")
+                       { 
+                           if(string.IsNullOrWhiteSpace(Model.ImgURL))
+                           {
+                               
+                           }
+                           else
+                           {
+                               <div class="col-md-12 mb10">
+                               <img src="@Model.ImgURL" class="img-responsive" />
+                                </div>
+                           }
+                           
+                           <div class="clearfix"></div>
+                        <div class="col-md-12">
+
+                            <p>@Html.Raw(HttpUtility.HtmlDecode(Model.Description))</p>
+
+                        </div>
+                       }
+                </div>
+
+            </div>
+        </div>
+
+
+
